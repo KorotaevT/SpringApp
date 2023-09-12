@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="SpringCRUDApp">
+    <output-path>$PROJECT_DIR$/out/artifacts/SpringCRUDApp</output-path>
+    <root id="root" />
+  </artifact>
+</component>
