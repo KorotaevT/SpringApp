@@ -9,7 +9,7 @@ public class Person {
     private int id;
 
     @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 3, message = "Enter correct name")
+    @Size(min = 2, max = 30, message = "Enter correct name")
     private String name;
 
     @Min(value = 0, message = "Age > 0")
