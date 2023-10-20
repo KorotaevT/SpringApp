@@ -4,7 +4,7 @@
 
 # Log file
 *.log
-
+hibernate.properties
 # BlueJ files
 *.ctxt
 
