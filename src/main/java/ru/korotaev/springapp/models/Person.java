@@ -1,32 +1,50 @@
 package ru.korotaev.springapp.models;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
+@Entity
+@Table(name = "person")
 public class Person {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 30, message = "Enter correct name")
+    @Column(name = "name")
     private String name;
 
     @Min(value = 0, message = "Age > 0")
+    @Column(name = "age")
     private int age;
 
     @NotEmpty(message = "Email should not be empty")
     @Email(message = "Email should be valid")
+    @Column(name = "email")
     private String email;
 
-    public Person(int id, String name, int age, String email) {
-        this.id = id;
+    @Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}", message = "Your address should be in this format: Country, City, Postal Code (6 digits)")
+    @Column(name = "address")
+    private String address;
+
+    public Person(String name, int age, String email, String address) {
         this.name = name;
         this.age = age;
         this.email = email;
+        this.address = address;
     }
 
     public Person() {}
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public int getId() {
         return id;
@@ -59,4 +77,29 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Person person = (Person) o;
+
+        if (id != person.id) return false;
+        if (age != person.age) return false;
+        if (name != null ? !name.equals(person.name) : person.name != null) return false;
+        if (email != null ? !email.equals(person.email) : person.email != null) return false;
+        return address != null ? address.equals(person.address) : person.address == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + age;
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        return result;
+    }
+
 }

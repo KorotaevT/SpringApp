@@ -1,0 +1,6 @@
+ru\korotaev\springapp\controllers\PeopleController.class
+ru\korotaev\springapp\models\Person.class
+ru\korotaev\springapp\util\PersonValidator.class
+ru\korotaev\springapp\config\SpringConfig.class
+ru\korotaev\springapp\dao\PersonDAO.class
+ru\korotaev\springapp\config\MySpringMVCDispatcherServletInitializer.class
